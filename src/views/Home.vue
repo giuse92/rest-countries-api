@@ -2,16 +2,10 @@
   <div class="home">
     <b-row>
       <b-col md="4" class="d-flex justify-content-center align-items-center"
-        ><b-icon-search class="mr-1"></b-icon-search
-        ><b-form-input v-model="searchValue" type="search"></b-form-input
-      ></b-col>
+        ><SearchInput
+      /></b-col>
       <b-col md="6"></b-col>
-      <b-col md="2"
-        ><b-form-select
-          v-model="selectForm.value"
-          :options="selectForm.options"
-        ></b-form-select
-      ></b-col>
+      <b-col md="2"><SelectInput /></b-col>
     </b-row>
     <div class="my-5">
       <div v-if="error.countriesInfo">Error</div>
@@ -26,7 +20,7 @@
                 :img-alt="country.name"
                 img-top
                 img-width="100%"
-                tag="div"
+                tag="article"
                 class="mb-2"
               >
                 <b-card-text
@@ -50,6 +44,8 @@
 
 <script>
 import axios from "axios";
+import SearchInput from "../components/SearchInput.vue";
+import SelectInput from "../components/SelectInput.vue";
 
 export default {
   name: "Home",
@@ -60,28 +56,11 @@ export default {
       },
       error: { countriesInfo: false },
       countriesInfo: [],
-      searchValue: "",
-      selectForm: {
-        value: "",
-        options: [
-          {
-            value: "",
-            text: "Filter By Region",
-          },
-          {
-            value: "africa",
-            text: "Africa",
-          },
-          {
-            value: "america",
-            text: "America",
-          },
-          { value: "asia", text: "Asia" },
-          { value: "europe", text: "Europe" },
-          { value: "oceania", text: "Oceania" },
-        ],
-      },
     };
+  },
+  components: {
+    SearchInput,
+    SelectInput,
   },
   created() {
     this.getAllCountriesInfo("https://restcountries.eu/rest/v2/all");
