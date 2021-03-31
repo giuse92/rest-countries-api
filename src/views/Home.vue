@@ -1,11 +1,13 @@
 <template>
   <div class="home">
     <b-row>
-      <b-col md="4" class="d-flex justify-content-center align-items-center"
-        ><SearchInput
+      <b-col md="5" class="d-flex justify-content-center align-items-center"
+        ><SearchInput @onClickSearch="onClickSearchInput"
       /></b-col>
-      <b-col md="6"></b-col>
-      <b-col md="2"><SelectInput /></b-col>
+      <b-col md="5"></b-col>
+      <b-col md="2"
+        ><SelectInput @onChangeSelect="onChangeSelectInput"
+      /></b-col>
     </b-row>
     <div class="my-5">
       <div v-if="error.countriesInfo">Error</div>
@@ -77,6 +79,12 @@ export default {
           console.error(e);
           this.error.countriesInfo = true;
         });
+    },
+    onClickSearchInput(array) {
+      this.countriesInfo = array;
+    },
+    onChangeSelectInput(array) {
+      this.countriesInfo = array;
     },
   },
 };
