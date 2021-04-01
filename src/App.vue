@@ -3,7 +3,7 @@
     <b-container>
       <b-navbar class="d-flex" :type="themeLight ? 'light' : 'dark'">
         <b-navbar-brand tag="h1" class="mb-0"
-          >Where in the world</b-navbar-brand
+          >Where in the world?</b-navbar-brand
         >
         <b-button :variant="themeLight ? 'light' : 'dark'" @click="toggleTheme"
           ><b-icon-moon></b-icon-moon>
