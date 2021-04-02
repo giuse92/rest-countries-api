@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
 export default {
   name: "SelectInput",
   data() {
@@ -20,23 +20,24 @@ export default {
             text: "Filter By Region",
           },
           {
-            value: "africa",
+            value: "Africa",
             text: "Africa",
           },
           {
-            value: "americas",
+            value: "Americas",
             text: "Americas",
           },
-          { value: "asia", text: "Asia" },
-          { value: "europe", text: "Europe" },
-          { value: "oceania", text: "Oceania" },
+          { value: "Asia", text: "Asia" },
+          { value: "Europe", text: "Europe" },
+          { value: "Oceania", text: "Oceania" },
         ],
       },
     };
   },
   methods: {
     filterByRegion() {
-      if (this.selectForm.value === "") {
+      this.$emit("onChangeSelect", this.selectForm.value);
+      /*if (this.selectForm.value === "") {
         return null;
       } else {
         axios
@@ -48,7 +49,7 @@ export default {
             this.$emit("onChangeSelect", data);
           })
           .catch((e) => console.error(e));
-      }
+      }*/
     },
   },
 };

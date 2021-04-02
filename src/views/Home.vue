@@ -14,7 +14,7 @@
       <div v-else>
         <div v-if="!isLoaded.countriesInfo">Loading...</div>
         <b-row v-else>
-          <b-col md="3" :key="`${i}`" v-for="(country, i) of countriesInfo">
+          <b-col md="3" :key="`${i}`" v-for="(country, i) of countriesToShow">
             <b-link :to="`/detail/${country.name.toLowerCase()}`">
               <b-card
                 :title="country.name"
@@ -58,6 +58,7 @@ export default {
       },
       error: { countriesInfo: false },
       countriesInfo: [],
+      countriesToShow: [],
     };
   },
   components: {
@@ -73,6 +74,7 @@ export default {
         .get(apiUrl)
         .then((res) => {
           this.countriesInfo = res.data;
+          this.countriesToShow = res.data;
           this.isLoaded.countriesInfo = true;
         })
         .catch((e) => {
@@ -83,8 +85,12 @@ export default {
     onClickSearchInput(array) {
       this.countriesInfo = array;
     },
-    onChangeSelectInput(array) {
-      this.countriesInfo = array;
+    onChangeSelectInput(selectedValue) {
+      if (selectedValue !== null) {
+        this.countriesToShow = this.countriesInfo.filter(
+          (obj) => obj.region === selectedValue
+        );
+      }
     },
   },
 };
