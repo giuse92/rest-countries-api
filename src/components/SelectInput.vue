@@ -17,7 +17,7 @@ export default {
         options: [
           {
             value: "",
-            text: "Filter By Region",
+            text: "All",
           },
           {
             value: "Africa",

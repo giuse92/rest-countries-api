@@ -5,7 +5,8 @@
         ><b-icon-arrow-left></b-icon-arrow-left> Back</b-button
       ></router-link
     >
-    <b-row v-if="isLoaded" class="mt-5">
+    <p v-if="!isLoaded">Loading...</p>
+    <b-row v-else class="mt-5">
       <b-col md="5">
         <b-img
           :src="countryInfo[0].flag"
@@ -32,25 +33,27 @@
             >{{ countryInfo[0].currencies[0].name }}</span
           >
         </p>
-        <p class="d-flex justify-content-between">
-          <span><strong>Region: </strong>{{ countryInfo[0].region }}</span
-          ><span
-            ><strong>Languages: </strong
-            >{{ countryInfo[0].languages[0].name }}</span
-          >
-        </p>
+        <div class="d-flex justify-content-between">
+          <span><strong>Region: </strong>{{ countryInfo[0].region }}</span>
+          <p>
+            <strong>Languages: </strong
+            ><span v-for="(country, i) of countryInfo[0].languages" :key="i"
+              >{{ country.name }}
+            </span>
+          </p>
+        </div>
         <p><strong>Subregion: </strong>{{ countryInfo[0].subregion }}</p>
         <p><strong>Capital: </strong>{{ countryInfo[0].capital }}</p>
         <div>
           <strong>Border Countries: </strong>
           <span v-if="countryInfo[0].borders.length === 0">No borders</span>
-          <b-link
+          <b-button
             v-for="(border, i) of countryInfo[0].borders"
             v-else
-            class="mx-1"
+            class="m-1"
             :key="`border-${i}`"
             :to="`/detail/${countryName(border)}`"
-            >{{ countryName(border) | capitalize }}</b-link
+            >{{ countryName(border) | capitalize }}</b-button
           >
         </div>
       </b-col>
@@ -74,6 +77,7 @@ export default {
   watch: {
     "$route.params.name": function () {
       this.getDetail();
+      this.isLoaded = false;
     },
   },
   methods: {

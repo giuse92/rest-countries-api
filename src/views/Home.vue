@@ -86,10 +86,12 @@ export default {
       this.countriesInfo = array;
     },
     onChangeSelectInput(selectedValue) {
-      if (selectedValue !== null) {
+      if (selectedValue !== "") {
         this.countriesToShow = this.countriesInfo.filter(
           (obj) => obj.region === selectedValue
         );
+      } else {
+        this.countriesToShow = this.countriesInfo;
       }
     },
   },
