@@ -2,16 +2,16 @@
   <div>
     <b-input-group>
       <b-input-group-prepend>
-        <b-button @click="getCountryByName"
+        <b-button @click="getCountryByName" variant="light"
           ><b-icon-search></b-icon-search
         ></b-button>
-        <b-form-input
-          v-model="searchValue"
-          placeholder="Search for a country..."
-          type="text"
-          variant="light"
-        ></b-form-input>
       </b-input-group-prepend>
+      <b-form-input
+        v-model="searchValue"
+        placeholder="Search for a country..."
+        type="text"
+        variant="light"
+      ></b-form-input>
     </b-input-group>
   </div>
 </template>

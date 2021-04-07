@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <b-row>
-      <b-col md="5" class="d-flex justify-content-center align-items-center"
-        ><SearchInput @onClickSearch="onClickSearchInput"
+      <b-col md="7" class="d-flex justify-content-start align-items-center"
+        ><SearchInput @onClickSearch="onClickSearchInput" class="mw-100"
       /></b-col>
-      <b-col md="5"></b-col>
+      <b-col md="3"></b-col>
       <b-col md="2"
         ><SelectInput @onChangeSelect="onChangeSelectInput"
       /></b-col>
@@ -83,7 +83,7 @@ export default {
         });
     },
     onClickSearchInput(array) {
-      this.countriesInfo = array;
+      this.countriesToShow = array;
     },
     onChangeSelectInput(selectedValue) {
       if (selectedValue !== "") {
