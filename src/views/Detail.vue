@@ -27,7 +27,8 @@
         </p>
         <p class="d-flex justify-content-between">
           <span
-            ><strong>Population: </strong>{{ countryInfo[0].population }}</span
+            ><strong>Population: </strong
+            >{{ countryInfo[0].population | separator }}</span
           ><span
             ><strong>Currencies: </strong
             >{{ countryInfo[0].currencies[0].name }}</span
@@ -855,6 +856,20 @@ export default {
     capitalize: function (value) {
       return value[0].toUpperCase() + value.slice(1);
     },
+    separator(value) {
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
   },
 };
 </script>
+
+<style>
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  text-decoration: none;
+}
+</style>

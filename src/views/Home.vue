@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <b-row>
-      <b-col md="7" class="d-flex justify-content-start align-items-center"
+      <b-col md="8" class="d-flex justify-content-start align-items-center"
         ><SearchInput @onClickSearch="onClickSearchInput" class="mw-100"
       /></b-col>
-      <b-col md="3"></b-col>
+      <b-col md="2"></b-col>
       <b-col md="2"
         ><SelectInput @onChangeSelect="onChangeSelectInput"
       /></b-col>
@@ -21,13 +21,13 @@
                 :img-src="country.flag"
                 :img-alt="country.name"
                 img-top
-                img-width="100%"
                 tag="article"
                 class="mb-2"
+                img-fluid
               >
                 <b-card-text
                   ><strong>Population:</strong
-                  >{{ country.population }}</b-card-text
+                  >{{ country.population | separator }}</b-card-text
                 >
                 <b-card-text
                   ><strong>Region:</strong>{{ country.region }}</b-card-text
@@ -93,6 +93,11 @@ export default {
       } else {
         this.countriesToShow = this.countriesInfo;
       }
+    },
+  },
+  filters: {
+    separator(value) {
+      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
 };

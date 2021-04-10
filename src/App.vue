@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <b-container>
-      <b-navbar class="mb-4">
-        <b-navbar-brand tag="h1" class="mb-0"
+    <b-navbar class="my-2 p-0">
+      <b-container>
+        <b-navbar-brand tag="h1" class="font-weight-bold"
           >Where in the world?</b-navbar-brand
         >
-      </b-navbar>
+      </b-container>
+    </b-navbar>
+    <b-container>
       <router-view />
     </b-container>
   </div>
@@ -22,6 +24,5 @@ export default {
 
 #app {
   font-family: "Nunito Sans", sans-serif;
-  height: 100vh;
 }
 </style>
